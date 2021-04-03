@@ -89,5 +89,27 @@ class CustomerRequest(models.Model):
 
 class CompanyAccount(models.Model):
     id = models.AutoField(primary_key=True)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+    choices = ((1,"Debit"),(2,"Credit"))
+    transaction_type = models.CharField(choices=choices,max_length=255)
+    transaction_amt = models.CharField(max_length=255)
+    transaction_date = models.DateField(max_length=255)
+    payment_mode = models.DateField(max_length=255)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class CompanyBank(models.Model):
+    id = models.AutoField(primary_key=True)
+    bank_account = models.CharField(max_length=255)
+    ifsc = models.CharField(max_length=255)
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class EmployeeBank(models.Model):
+    id = models.AutoField(primary_key=True)
+    bank_account = models.CharField(max_length=255)
+    ifsc = models.CharField(max_length=255)
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
