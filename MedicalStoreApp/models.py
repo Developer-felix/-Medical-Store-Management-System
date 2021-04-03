@@ -38,3 +38,56 @@ class MedicalDetails(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=255)
     objects = models.Manager()
+
+class Employee(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    joining_date = models.DateField(max_length=255)
+    phone = models.DateField(max_length=255)
+    address = models.DateField(max_length=255)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class Customer(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    contact = models.CharField(max_length=255)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class Bill(models.Model):
+    id = models.AutoField(primary_key=True)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class EmployeeSalary(models.Model):
+    id = models.AutoField(primary_key=True)
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    salary_date = models.DateField(max_length=255)
+    salary_amount = models.CharField(max_length=255)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class BillDetails(models.Model):
+    id = models.AutoField(primary_key=True)
+    bill_id = models.ForeignKey(Bill, on_delete=models.CASCADE)
+    medicine_id = models.ForeignKey(Medicine, on_delete=models.CASCADE)
+    qty = models.IntegerField()
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class CustomerRequest(models.Model):
+    id = models.AutoField(primary_key=True)
+    customer_name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    medicine_details = models.CharField(max_length=255)
+    status = models.BooleanField(default=False)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class CompanyAccount(models.Model):
+    id = models.AutoField(primary_key=True)
+    added_on = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
