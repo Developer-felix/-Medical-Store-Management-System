@@ -1,6 +1,10 @@
 from django.contrib import admin
 from MedicalStoreApp.models import Company,CompanyBank,Medicine,MedicalDetails,Employee,EmployeeSalary,EmployeeBank,Customer,CustomerRequest,CompanyAccount,Bill,BillDetails
 
+
+admin.site.site_header = "Medical Store Management"
+admin.site.site_title = "Medical Store Management"
+
 admin.site.register(Company)
 admin.site.register(CompanyBank)
 admin.site.register(CompanyAccount)
