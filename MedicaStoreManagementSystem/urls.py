@@ -2,11 +2,12 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from MedicalStoreApp import views
+from MedicalStoreApp.views import CompanyViewSet
+
 router = routers.DefaultRouter()
-router.register("company/",views.CompanySerializer)
+router.register('company', CompanyViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api',include(router.urls))
+    path('api/',include(router.urls))
 ]
