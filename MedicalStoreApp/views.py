@@ -10,3 +10,5 @@ class CompanyViewSet(viewsets.ModelViewSet):
         serializer = CompanySerializer(Company,many=True,context={"request":request})
         response_dict = {"error":False,"Message":"All company list Data","data":serializer.data}
         return Response(response_dict)
+
+company_list = CompanyViewSet.as_view({"get":"list"})

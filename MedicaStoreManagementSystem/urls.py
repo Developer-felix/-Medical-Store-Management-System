@@ -5,7 +5,7 @@ from rest_framework import routers
 from MedicalStoreApp.views import CompanyViewSet
 
 router = routers.DefaultRouter()
-router.register('company', CompanyViewSet)
+router.register('company', CompanyViewSet,basename="company")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
