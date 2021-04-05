@@ -4,5 +4,6 @@ from MedicalStoreApp.serializers import CompanySerializer
 from MedicalStoreApp.models import Company
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+    def list(self,request):
+        Company = Company.objects.all()
+    queryset = CompanySerializer(Company,many=True,context={"request":request})
